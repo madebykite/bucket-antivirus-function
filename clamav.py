@@ -152,6 +152,7 @@ def md5_from_s3_tags(s3_client, bucket, key):
             "NoSuchKey",  # Object does not exist
             "MethodNotAllowed",  # Object deleted in bucket with versioning
         }
+        print("Exit code: %s." % e.response["Error"]["Code"])
         if e.response["Error"]["Code"] in expected_errors:
             return ""
         else:
