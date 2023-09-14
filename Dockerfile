@@ -21,7 +21,7 @@ RUN rm -rf /root/.cache/pip
 
 # Download libraries we need to run in lambda
 WORKDIR /tmp
-RUN yumdownloader -x \*i686 --archlist=x86_64 clamav clamav-lib clamav-update json-c pcre2 libprelude gnutls libtasn1 lib64nettle nettle libtool-ltdl libxml2 libxml2-devel xz-libs binutils libcurl libcurl-devel libnghttp2
+RUN yumdownloader -x \*i686 --archlist=x86_64 clamav clamav-lib clamav-update json-c pcre2 libprelude gnutls libtasn1 lib64nettle nettle libtool-ltdl libxml2 libxml2-devel xz-libs binutils libcurl libcurl-devel libnghttp2 libidn2
 RUN rpm2cpio clamav-0*.rpm | cpio -idmv
 RUN rpm2cpio clamav-lib*.rpm | cpio -idmv
 RUN rpm2cpio clamav-update*.rpm | cpio -idmv
@@ -38,6 +38,7 @@ RUN rpm2cpio xz-libs* | cpio -idmv
 RUN rpm2cpio binutils* | cpio -idmv
 RUN rpm2cpio libcurl* | cpio -idmv
 RUN rpm2cpio libnghttp2* | cpio -idmv
+RUN rpm2cpio libidn2* | cpio -idmv
 
 # Copy over the binaries and libraries
 RUN cp /tmp/usr/bin/clamscan /tmp/usr/bin/freshclam /tmp/usr/lib64/* /opt/app/bin/
