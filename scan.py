@@ -257,9 +257,6 @@ def lambda_handler(event, context):
             result_time,
         )
 
-    metrics.send(
-        env=ENV, bucket=s3_object.bucket_name, key=s3_object.key, status=scan_result
-    )
     # Delete downloaded file to free up room on re-usable lambda function container
     try:
         os.remove(file_path)
