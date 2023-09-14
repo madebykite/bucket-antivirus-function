@@ -158,6 +158,8 @@ def md5_from_s3_tags(s3_client, bucket, key):
             return ""
         else:
             raise
+    except TypeError as e:
+        return ""
     for tag in tags:
         if tag["Key"] == "md5":
             return tag["Value"]
