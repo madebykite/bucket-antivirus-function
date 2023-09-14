@@ -43,7 +43,7 @@ RE_SEARCH_DIR = r"SEARCH_DIR\(\"=([A-z0-9\/\-_]*)\"\)"
 
 def current_library_search_path():
     fc_env = os.environ.copy()
-    fc_env["LD_LIBRARY_PATH"] = "./bin"
+    fc_env["LD_LIBRARY_PATH"] = CLAMAVLIB_PATH
     ld_verbose = subprocess.check_output(["./bin/ld", "--verbose"], env=fc_env).decode("utf-8")
     rd_ld = re.compile(RE_SEARCH_DIR)
     return rd_ld.findall(ld_verbose)
@@ -117,6 +117,7 @@ def update_defs_from_freshclam(path, library_path=""):
             ":".join(current_library_search_path()),
             CLAMAVLIB_PATH,
         )
+    print("Library path: %s" % fc_env["LD_LIBRARY_PATH"])
     print("Starting freshclam with defs in %s." % path)
     fc_proc = subprocess.Popen(
         [
