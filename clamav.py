@@ -117,7 +117,6 @@ def update_defs_from_freshclam(path, library_path=""):
             ":".join(current_library_search_path()),
             CLAMAVLIB_PATH,
         )
-    print("Library path: %s" % fc_env["LD_LIBRARY_PATH"])
     print("Starting freshclam with defs in %s." % path)
     fc_proc = subprocess.Popen(
         [
