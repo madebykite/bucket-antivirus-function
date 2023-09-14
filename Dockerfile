@@ -21,7 +21,7 @@ RUN rm -rf /root/.cache/pip
 
 # Download libraries we need to run in lambda
 WORKDIR /tmp
-RUN yumdownloader -x \*i686 --archlist=x86_64 clamav clamav-lib clamav-update json-c pcre2 libprelude gnutls libtasn1 lib64nettle nettle libtool-ltdl libxml2 libxml2-devel xz-libs binutils libcurl libcurl-devel libnghttp2 libidn2 libssh2 openldap libunistring cyrus-sasl-lib nss
+RUN yumdownloader -x \*i686 --archlist=x86_64 clamav clamav-lib clamav-update json-c pcre2 libprelude gnutls libtasn1 lib64nettle nettle libtool-ltdl libxml2 libxml2-devel xz-libs binutils libcurl libcurl-devel libnghttp2 libidn2 libssh2 openldap libunistring cyrus-sasl-lib nss libcrypt
 RUN rpm2cpio clamav-0*.rpm | cpio -idmv
 RUN rpm2cpio clamav-lib*.rpm | cpio -idmv
 RUN rpm2cpio clamav-update*.rpm | cpio -idmv
@@ -44,6 +44,7 @@ RUN rpm2cpio openldap* | cpio -idmv
 RUN rpm2cpio libunistring* | cpio -idmv
 RUN rpm2cpio cyrus-sasl-lib* | cpio -idmv
 RUN rpm2cpio nss* | cpio -idmv
+RUN rpm2cpio libcrypt* | cpio -idmv
 
 # Copy over the binaries and libraries
 RUN cp /tmp/usr/lib64/sasl2/* /opt/app/bin/
