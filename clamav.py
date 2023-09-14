@@ -44,7 +44,7 @@ RE_SEARCH_DIR = r"SEARCH_DIR\(\"=([A-z0-9\/\-_]*)\"\)"
 def current_library_search_path():
     fc_env = os.environ.copy()
     fc_env["LD_LIBRARY_PATH"] = "./bin"
-    ld_verbose = subprocess.check_output(["./bin/ld", "--verbose"]).decode("utf-8")
+    ld_verbose = subprocess.check_output(["./bin/ld", "--verbose"], env=fc_env).decode("utf-8")
     rd_ld = re.compile(RE_SEARCH_DIR)
     return rd_ld.findall(ld_verbose)
 
