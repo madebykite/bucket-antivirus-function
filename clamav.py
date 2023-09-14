@@ -175,6 +175,8 @@ def time_from_s3(s3_client, bucket, key):
             return datetime.datetime.fromtimestamp(0, utc)
         else:
             raise
+    except TypeError as e:
+        return ""
     return time
 
 
