@@ -51,11 +51,11 @@ pre_commit_tests: ## Run pre-commit tests
 
 .PHONY: test
 test: clean  ## Run python tests
-	nosetests
+	nose2
 
 .PHONY: coverage
 coverage: clean  ## Run python tests with coverage
-	nosetests --with-coverage
+	nose2 --coverage
 
 .PHONY: scan
 scan: ./build/lambda.zip ## Run scan function locally
