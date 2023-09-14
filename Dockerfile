@@ -51,7 +51,7 @@ RUN cp /tmp/usr/lib64/sasl2/* /opt/app/bin/
 RUN rm -rf /tmp/usr/lib64/sasl2
 RUN cp /tmp/usr/lib64/nss/* /opt/app/bin/
 RUN rm -rf /tmp/usr/lib64/nss
-RUN cp /tmp/usr/bin/clamscan /tmp/usr/bin/freshclam /tmp/usr/lib64/* /opt/app/bin/
+RUN cp /tmp/usr/bin/clamscan /tmp/usr/bin/freshclam /tmp/lib64/* /tmp/usr/lib64/* /opt/app/bin/
 RUN cp /tmp/usr/bin/ld.bfd /opt/app/bin/ld
 
 # Fix the freshclam.conf settings
