@@ -22,7 +22,6 @@ from distutils.util import strtobool
 import boto3
 
 import clamav
-import metrics
 from common import AV_DEFINITION_S3_BUCKET
 from common import AV_DEFINITION_S3_PREFIX
 from common import AV_DELETE_INFECTED_FILES
