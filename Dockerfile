@@ -45,6 +45,8 @@ RUN rpm2cpio libunistring* | cpio -idmv
 RUN rpm2cpio cyrus-sasl-lib* | cpio -idmv
 
 # Copy over the binaries and libraries
+RUN cp /tmp/usr/lib64/sasl2/* /opt/app/bin/
+RUN rm -rf /tmp/usr/lib64/sasl2
 RUN cp /tmp/usr/bin/clamscan /tmp/usr/bin/freshclam /tmp/usr/lib64/* /opt/app/bin/
 RUN cp /tmp/usr/bin/ld.bfd /opt/app/bin/ld
 
