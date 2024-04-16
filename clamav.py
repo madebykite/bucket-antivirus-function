@@ -146,17 +146,14 @@ def md5_from_file(filename):
 
 def md5_from_s3_tags(s3_client, bucket, key):
     try:
-        print(key)
         tags = s3_client.get_object_tagging(Bucket=bucket, Key=key)["TagSet"]
     except botocore.exceptions.ClientError as e:
         expected_errors = {
             "404",  # Object does not exist
-            "403",  # Object does not exist
             "AccessDenied",  # Object cannot be accessed
             "NoSuchKey",  # Object does not exist
             "MethodNotAllowed",  # Object deleted in bucket with versioning
         }
-        print(e.response["Error"]["Code"])
         if e.response["Error"]["Code"] in expected_errors:
             return ""
         else:
@@ -173,7 +170,7 @@ def time_from_s3(s3_client, bucket, key):
     try:
         time = s3_client.head_object(Bucket=bucket, Key=key)["LastModified"]
     except botocore.exceptions.ClientError as e:
-        expected_errors = {"404", "403", "AccessDenied", "NoSuchKey"}
+        expected_errors = {"404", "AccessDenied", "NoSuchKey"}
         if e.response["Error"]["Code"] in expected_errors:
             return datetime.datetime.fromtimestamp(0, utc)
         else:
