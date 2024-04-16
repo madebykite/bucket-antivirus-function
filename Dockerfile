@@ -54,6 +54,7 @@ RUN rm -rf /tmp/usr/lib64/nss
 RUN cp /tmp/usr/bin/clamscan /tmp/usr/bin/freshclam /tmp/lib64/* /tmp/usr/lib64/* /opt/app/bin/
 RUN cp /tmp/usr/bin/ld.bfd /opt/app/bin/ld
 RUN cp /opt/app/bin/libcrypt-2.26.so /opt/app/bin/libcrypt.so.1
+RUN cp /usr/lib64/libpsl* /opt/app/bin/
 
 # Fix the freshclam.conf settings
 RUN echo "DatabaseMirror database.clamav.net" > /opt/app/bin/freshclam.conf
