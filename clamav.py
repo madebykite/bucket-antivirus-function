@@ -150,6 +150,7 @@ def md5_from_s3_tags(s3_client, bucket, key):
     except botocore.exceptions.ClientError as e:
         expected_errors = {
             "404",  # Object does not exist
+            "403",  # Object does not exist
             "AccessDenied",  # Object cannot be accessed
             "NoSuchKey",  # Object does not exist
             "MethodNotAllowed",  # Object deleted in bucket with versioning
